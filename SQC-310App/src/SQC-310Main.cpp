@@ -1,5 +1,5 @@
 /* SQC-310Main.cpp */
-/* Author:  Marty Kraimer Date:    17MAR2000 */
+/* Author:  Laura Arcidiacono Date:    19JUL2021 */
 
 #include <stddef.h>
 #include <stdlib.h>

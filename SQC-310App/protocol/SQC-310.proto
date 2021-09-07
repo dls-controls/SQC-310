@@ -1,0 +1,43 @@
+#terminator = CR LF;
+Terminator = ;
+#OutTerminator = CR LF;
+#InTerminator = CR LF;
+
+SYNC = "!";
+
+get_rate1 {
+    LEN = 0x24; CMD = "L1"; CRC1 = 0x66; CRC2 = 0x32;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "% f", "\?\?";
+}
+
+get_thickness1 {
+    LEN = 0x24; CMD = "N1"; CRC1 = 0x5D; CRC2 = 0x51;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "% f", "\?\?";
+}
+
+get_frequency1 {
+    LEN = 0x24; CMD = "P1"; CRC1 = 0x5A; CRC2 = 0x91;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "% f", "\?\?";
+}
+
+get_shutter {
+    LEN = 0x24; CMD = "U?"; CRC1 = 0x5B; CRC2 = 0x54;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "% f", "\?\?";
+}
+
+#get_filmParameters {
+#    LEN = 0x25; CMD = "A1?"; CRC1 = 0x2E; CRC2 = 0x95;
+#    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    #in $SYNC, "\?A", "%#s%", , "%(\$1.VAL)f", "*f", "%(\$2.VAL)f", "%*f", "%*f", "%*d". "%*d", "\?\?";
+#    in $SYNC, "\?A", "\?\?";
+#}
+
+set_zero {
+    LEN = 0x23; CMD = "S"; CRC1 = 0x8E; CRC2 = 0x8F;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "\?\?";
+}   

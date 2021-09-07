@@ -1,0 +1,41 @@
+Terminator = '\r\n';
+ReplyTimeout = 2000;
+
+# How the crystal quartz readout works:
+# @ gives the model number and the software version number
+set_hello{
+    out !#@(CHR$0)
+    }
+
+get_density{
+    in !`F1? 2(CHR$0)
+    }
+
+set_density{
+    out !/F1 2,(material)(CHR$0)
+    }
+
+# Tooling factor/Crystal tuning
+get_tuning{
+    in !,HA1?(CHR$0)
+    }
+
+set_tuning{
+    out !/HA1(CHR$0)
+    }
+
+# Gives the sensor rate for the requested sensor. Uses the density and z-ratio of the last material used if no active layer is currently assigned
+get_sensorRate{
+    in !$L1(CHR$0)
+    in !$L2(CHR$0)
+    in !$L3(CHR$0)
+    in !$L4(CHR$0)
+    }
+
+# Gives the thickness reading for the requested sensor. Uses the density and the z-ratio of the last material used if no active layer is assigned
+get_thickness{
+    in !$N1(CHR$0)
+    in !$N2(CHR$0)
+    in !$N3(CHR$0)
+    in !$N4(CHR$0)
+    }

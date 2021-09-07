@@ -1,0 +1,97 @@
+# macro, device, device name
+
+#% autosave 1 VAL
+#% gui, $(name), edmembed, sqc310.edl, P=$(P)
+
+record (ai, "$(NAME):Rate")
+{
+    field (DTYP, "stream")
+    field (INP,  "@$(PTCOLS) get_rate1 $(PORT)")
+    field (EGU, "Ang/s")
+    field (SCAN, "1 second")
+    field (FLNK, "$(NAME):Thickness")
+}
+
+record (ai, "$(NAME):Density")
+{
+    field (EGU, "g/cm^3")
+    field (SCAN, "Passive")
+}
+
+record (ai, "$(NAME):Tuning"){
+    field (EGU, "%")
+    field (SCAN, "Passive")
+}
+
+record (ai, "$(NAME):Z-ratio")
+{
+    field (EGU, "g/cm^3")
+    field (SCAN, "Passive")
+}
+
+record (ai, "$(NAME):Thickness")
+{
+    field (DTYP, "stream")
+    field (INP,  "@$(PTCOLS) get_thickness1 $(PORT)")
+    field (EGU, "Ang")
+    field (SCAN, "Passive")
+    field (FLNK, "$(NAME):Frequency")
+}
+
+record (ai, "$(NAME):Frequency")
+{
+    field (DTYP, "stream")
+    field (INP,  "@$(PTCOLS) get_frequency1 $(PORT)")
+    field (EGU, "Hz")
+    field (SCAN, "Passive")
+    field (FLNK, "$(NAME):Shutter_RBV")
+}
+
+record (ai, "$(NAME):Shutter_RBV")
+{
+    field (DTYP, "stream")
+    field (INP,  "@$(PTCOLS) get_shutter $(PORT)")
+    field (SCAN, "Passive")
+    field (FLNK, "$(NAME):Film")
+}
+
+record (stringin, "$(NAME):Film")
+{
+    field (DTYP, "stream")
+    field (INP,  "@$(PTCOLS) get_filmParameters($(NAME):Density, $(NAME):ToolingFactor, $(NAME):Z-ratio) $(PORT)")
+    field (SCAN, "Passive")
+    field (FLNK, "$(NAME):MeanRate")
+}
+
+record (bo, "$(NAME):Zero")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@$(PTCOLS) set_zero $(PORT)")
+}
+
+record (ai, "$(NAME):_starttime")
+{
+    field (DTYP, "Soft Timestamp")
+    field (TSEL, "$(NAME):Zero.TIME")
+}
+
+record (ai, "$(NAME):_currtime")
+{
+    field (DTYP, "Soft Timestamp")
+    field (TSEL, "$(NAME):Thickness.TIME")
+}
+
+
+record (calc, "$(NAME):Runtime")
+{
+    field (EGU, "s")
+    field (INPA, "$(NAME):_starttime PP MS")
+}
+
+record (calc, "$(NAME):MeanRate")
+{
+    field (EGU, "Ang/s")
+    field (INPA, "$(NAME):Thickness")
+    field (INPB, "$(NAME):Runtime PP MS")
+    field (CALC, "1000*A/B")
+}
