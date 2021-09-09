@@ -1,0 +1,27 @@
+The SQCCommand script takes a single argument - the command "message", as it is referred to in the manual (4.2.1).
+
+Despite what the manual says, the CRC calculation should include the SYNC character.
+The length however just includes the command message, not the sync or CRC.
+Make sure to escape any special characters and whitespace.
+
+For example:
+
+▶ bin/linux-x86_64/SQCCommand @
+(ASCII, Decimal, Hexadecimal)
+Length (+34): #, 35, 0x23
+Command (without CRC): !#@
+CRC1: O, 79, 0x4f
+CRC2: 7, 55, 0x37
+Full Command: !#@O7
+
+This matches the example for the hello command in the manual, once you convert from decimal to ASCII (4.3.1.1)).
+
+Another example:
+
+▶ bin/linux-x86_64/SQCCommand F1\ 1,5
+(ASCII, Decimal, Hexadecimal)
+Length (+34): (, 40, 0x28
+Command (without CRC): !(F1 1,5
+CRC1: G, 71, 0x47
+CRC2: |, 124, 0x7c
+Full Command: !(F1 1,5G|

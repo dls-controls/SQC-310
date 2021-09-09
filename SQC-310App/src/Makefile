@@ -2,6 +2,8 @@ TOP=../..
 
 include $(TOP)/configure/CONFIG
 
+PROD += SQCCommand
+
 #PROD_IOC = SQC-310
 
 # SQC-310.dbd will be installed into <top>/dbd
