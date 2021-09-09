@@ -3,7 +3,7 @@
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 SUPPORT=       /dls_sw/prod/R3.14.12.7/support
-STREAMDEVICE=  $(SUPPORT)/streamDevice/2-5dls13
+STREAMDEVICE=  $(SUPPORT)/streamDevice/2-8-18dls1beta
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
 EPICS_BASE = /dls_sw/epics/R3.14.12.7/base

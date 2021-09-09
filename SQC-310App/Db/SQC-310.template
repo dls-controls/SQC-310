@@ -1,7 +1,7 @@
 record (ai, "$(NAME):Rate")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_rate1 $(PORT)")
+    field (INP,  "@$(PTCOLS) get_rate(1) $(PORT)")
     field (EGU, "Ang/s")
     field (SCAN, "1 second")
     field (FLNK, "$(NAME):Thickness")
@@ -10,7 +10,7 @@ record (ai, "$(NAME):Rate")
 record (ai, "$(NAME):Thickness")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_thickness1 $(PORT)")
+    field (INP,  "@$(PTCOLS) get_thickness(1) $(PORT)")
     field (EGU, "Ang")
     field (SCAN, "Passive")
     field (FLNK, "$(NAME):Frequency")
@@ -62,7 +62,7 @@ record (ai, "$(NAME):Z-ratio")
 record (bo, "$(NAME):Zero")
 {
     field (DTYP, "stream")
-    field (OUT,  "@$(PTCOLS) set_zero $(PORT)")
+    field (OUT,  "@$(PTCOLS) zero_thickness $(PORT)")
 }
 
 record (ai, "$(NAME):_starttime")
