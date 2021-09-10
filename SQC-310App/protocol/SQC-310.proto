@@ -7,38 +7,40 @@ Terminator = ;
 
 SYNC = "!";
 
-get_version {
+get_device_name {
     # Example: !#@O7 -> !8ASQC310C 2MB Ver 6.65Z� (Response CRC2 is non-printable)
     LEN = 0x23; CMD = "@"; CRC1 = 0x4F; CRC2 = 0x37;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "%s", "\?\?"
+    in $SYNC, "\?A", "%s", "\?\?";
+    ExtraInput = Ignore;  # Just read the first section and ignore the rest
 }
 
-get_density {
-    LEN = 0x27; CMD = "F1? 1"; CRC1 = 0x87; CRC2 = 0x69;
+get_material_density {
+    LEN = 0x27; CMD = "F\$1? 2"; CRC1 = 0x47; CRC2 = 0x69;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "%f", "\?\?"
 }
 
-set_density {
-    # Parameter: Density to set
-    # Example Command: F1 1,1.2
-    LEN = 0x2F; CMD = "F1 1,\$1"; CRC1 = 0x0; CRC2 = 0x0;
+set_material_density {
+    # Example Command: F1 1,55.55
+    # Left and right pad with zeroes so we can hard-code the width
+    LEN = 0x2C; CMD = "F\$1 2,%05.2f"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }
 
-get_crystal_tuning {
+get_crystal_tooling {
     # Parameter: Sensor number
-    LEN = 0x2F; CMD = "HA1? \$1"; CRC1 = 0x0; CRC2 = 0x0;
+    LEN = 0x28; CMD = "HA1? \$1"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "\?\?"
+    in $SYNC, "\?A\$1,", "%d", " ", "\?\?"
 }
 
-set_crystal_tuning {
-    # Parameters: Sensor number, Value
-    # Example: HA1 1,1
-    LEN = 0x2F; CMD = "HA1 \$1,\$2"; CRC1 = 0x0; CRC2 = 0x0;
+set_crystal_tooling {
+    # Parameters: Sensor Number
+    # Example: HA1 1,010
+    # Left pad with zeroes so we can hard-code the width
+    LEN = 0x2B; CMD = "HA1 \$1,%03d"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }

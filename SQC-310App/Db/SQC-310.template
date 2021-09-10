@@ -4,25 +4,30 @@
 # Authors: Laura Arcidiacono, Gary Yendell
 
 # Macros:
+# % macro, name, Device name
 # % macro, P, Device Prefix
 # % macro, PORT, Asyn Port name
 
-record (ai, "$(P):Rate")
-{
-    field (DTYP, "stream")
-    field (INP,  "@SQC-310.proto get_rate(1) $(PORT)")
-    field (EGU, "Ang/s")
-    field (SCAN, "1 second")
-    field (FLNK, "$(P):Thickness")
-}
+# This associates the template with an edm screen
+# % gui, $(name), edm, SQC-310.edl, P=$(P)
 
-record (ai, "$(P):Thickness")
-{
-    field (DTYP, "stream")
-    field (INP,  "@SQC-310.proto get_thickness(1) $(PORT)")
-    field (EGU, "Ang")
-    field (SCAN, "Passive")
-    field (FLNK, "$(P):Frequency")
+substitute "R=1"
+include "SQC-310_sensor.template"
+
+substitute "R=2"
+include "SQC-310_sensor.template"
+
+substitute "R=3"
+include "SQC-310_sensor.template"
+
+substitute "R=4"
+include "SQC-310_sensor.template"
+
+record(stringin, "$(P):DeviceName") {
+  field(DTYP, "stream")
+  field(INP, "@SQC-310.proto get_device_name $(PORT)")
+  field(PINI, "YES")
+  field(SCAN, "10 second")
 }
 
 record (ai, "$(P):Frequency")
@@ -30,34 +35,31 @@ record (ai, "$(P):Frequency")
     field (DTYP, "stream")
     field (INP,  "@SQC-310.proto get_frequency1 $(PORT)")
     field (EGU, "Hz")
-    field (SCAN, "Passive")
-    field (FLNK, "$(P):Shutter_RBV")
+    field (SCAN, "1 second")
 }
 
 record (ai, "$(P):Shutter_RBV")
 {
     field (DTYP, "stream")
     field (INP,  "@SQC-310.proto get_shutter $(PORT)")
-    field (SCAN, "Passive")
-    field (FLNK, "$(P):Film")
+    field (SCAN, "1 second")
 }
 
-record (ai, "$(P):Density")
+record (ao, "$(P):Density")
 {
-    field (EGU, "g/cm^3")
-    field (SCAN, "Passive")
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto set_material_density(1) $(PORT)")
+    field (EGU, "gcm^-3")
+    field(PREC, 2)
 }
 
-record (ai, "$(P):ToolingFactor")
+record (ai, "$(P):Density_RBV")
 {
-    field (EGU, "%")
-    field (SCAN, "Passive")
-}
-
-record (ai, "$(P):Z-ratio")
-{
-    #field (EGU, "g/cm^3)
-    field (SCAN, "Passive")
+    field (DTYP, "stream")
+    field (INP,  "@SQC-310.proto get_material_density(1) $(PORT)")
+    field (EGU, "gcm^-3")
+    field (SCAN, "1 second")
+    field(PREC, 2)
 }
 
 #record (stringin, "$(P):Film")

@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # templates like this
 #
 DB += SQC-310.template
+DB += SQC-310_sensor.template
 
 include $(TOP)/configure/RULES
 #----------------------------------------
