@@ -1,95 +1,104 @@
-record (ai, "$(NAME):Rate")
+#########################################################################################
+# SQC-310 Quartz Crystal Microbalance
+#
+# Authors: Laura Arcidiacono, Gary Yendell
+
+# Macros:
+# % macro, P, Device Prefix
+# % macro, PORT, Asyn Port name
+
+record (ai, "$(P):Rate")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_rate(1) $(PORT)")
+    field (INP,  "@SQC-310.proto get_rate(1) $(PORT)")
     field (EGU, "Ang/s")
     field (SCAN, "1 second")
-    field (FLNK, "$(NAME):Thickness")
+    field (FLNK, "$(P):Thickness")
 }
 
-record (ai, "$(NAME):Thickness")
+record (ai, "$(P):Thickness")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_thickness(1) $(PORT)")
+    field (INP,  "@SQC-310.proto get_thickness(1) $(PORT)")
     field (EGU, "Ang")
     field (SCAN, "Passive")
-    field (FLNK, "$(NAME):Frequency")
+    field (FLNK, "$(P):Frequency")
 }
 
-record (ai, "$(NAME):Frequency")
+record (ai, "$(P):Frequency")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_frequency1 $(PORT)")
+    field (INP,  "@SQC-310.proto get_frequency1 $(PORT)")
     field (EGU, "Hz")
     field (SCAN, "Passive")
-    field (FLNK, "$(NAME):Shutter_RBV")
+    field (FLNK, "$(P):Shutter_RBV")
 }
 
-record (ai, "$(NAME):Shutter_RBV")
+record (ai, "$(P):Shutter_RBV")
 {
     field (DTYP, "stream")
-    field (INP,  "@$(PTCOLS) get_shutter $(PORT)")
+    field (INP,  "@SQC-310.proto get_shutter $(PORT)")
     field (SCAN, "Passive")
-    field (FLNK, "$(NAME):Film")
+    field (FLNK, "$(P):Film")
 }
 
-record (ai, "$(NAME):Density")
+record (ai, "$(P):Density")
 {
     field (EGU, "g/cm^3")
     field (SCAN, "Passive")
 }
 
-record (ai, "$(NAME):ToolingFactor")
+record (ai, "$(P):ToolingFactor")
 {
     field (EGU, "%")
     field (SCAN, "Passive")
 }
 
-record (ai, "$(NAME):Z-ratio")
+record (ai, "$(P):Z-ratio")
 {
     #field (EGU, "g/cm^3)
     field (SCAN, "Passive")
 }
 
-#record (stringin, "$(NAME):Film")
+#record (stringin, "$(P):Film")
 #{
 #    field (DTYP, "stream")
-    #field (INP, "@$(PTCOLS) get_filmParameters($(NAME):Density) $(PORT)")
+    #field (INP, "@SQC-310 get_filmParameters($(P):Density) $(PORT)")
 #    field (SCAN, "Passive")
-#    field (FLNK, "$(NAME):MeanRate")
+#    field (FLNK, "$(P):MeanRate")
 #}
 
-record (bo, "$(NAME):Zero")
+record (bo, "$(P):Zero")
 {
     field (DTYP, "stream")
-    field (OUT,  "@$(PTCOLS) zero_thickness $(PORT)")
+    field (OUT,  "@SQC-310.proto zero_thickness $(PORT)")
 }
 
-record (ai, "$(NAME):_starttime")
+record (ai, "$(P):_starttime")
 {
     field (DTYP, "Soft Timestamp")
-    field (TSEL, "$(NAME):Zero.TIME")
+    field (TSEL, "$(P):Zero.TIME")
 }
 
-record (ai, "$(NAME):_currtime")
+record (ai, "$(P):_currtime")
 {
     field (DTYP, "Soft Timestamp")
-    field (TSEL, "$(NAME):Thickness.TIME")
+    field (TSEL, "$(P):Thickness.TIME")
 }
 
 
-record (calc, "$(NAME):Runtime")
+record (calc, "$(P):Runtime")
 {
     field (EGU, "s")
-    field (INPA, "$(NAME):_starttime PP MS")
-    field (INPB, "$(NAME):_currtime PP MS")
+    field (INPA, "$(P):_starttime PP MS")
+    field (INPB, "$(P):_currtime PP MS")
     field (CALC, "B-A")
 }
 
-record (calc, "$(NAME):MeanRate")
+record (calc, "$(P):MeanRate")
 {
     field (EGU, "Ang/s")
-    field (INPA, "$(NAME):Thickness")
-    field (INPB, "$(NAME):Runtime PP MS")
+    field (INPA, "$(P):Thickness")
+    field (INPB, "$(P):Runtime PP MS")
     field (CALC, "1000*A/B")
 }

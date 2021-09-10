@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <components arch="linux-x86_64">
 	<asyn.AsynIP name="SQCPort" port="127.0.0.1"/>
-	<SQC-310.Sqc310 NAME="SQC" PORT="SQCPort" PTCOLS="SQC-310"/>
+	<SQC-310.SQC310 P="BLXXY-EA-SQC-01" PORT="SQCPort" name="SQC"/>
 </components>
