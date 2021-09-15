@@ -15,19 +15,50 @@ get_device_name {
     ExtraInput = Ignore;  # Just read the first section and ignore the rest
 }
 
-get_material_density {
-    LEN = 0x27; CMD = "F\$1? 2"; CRC1 = 0x47; CRC2 = 0x69;
+# Material Commands
+
+get_material_name {
+    LEN = 0x27; CMD = "F\$1? 1"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "%f", "\?\?"
+    in $SYNC, "\?A", "%s", "\?\?"
 }
 
-set_material_density {
-    # Example Command: F1 1,55.55
-    # Left and right pad with zeroes so we can hard-code the width
-    LEN = 0x2C; CMD = "F\$1 2,%05.2f"; CRC1 = 0x0; CRC2 = 0x0;
+set_material_name {
+    # Example Command: F1 1,Berylium
+    LEN = 0x2C; CMD = "F\$1 1,%s"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }
+
+get_material_density {
+    LEN = 0x27; CMD = "F\$1? 2"; CRC1 = 0x0; CRC2 = 0x0;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "%d", "\?\?"
+}
+
+set_material_density {
+    # Example Command: F1 1,5555
+    # Left and right pad with zeroes so we can hard-code the width
+    LEN = 0x2C; CMD = "F\$1 2,%05d"; CRC1 = 0x0; CRC2 = 0x0;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "\?\?"
+}
+
+get_material_zfactor {
+    LEN = 0x27; CMD = "F\$1? 2"; CRC1 = 0x0; CRC2 = 0x0;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "%d", "\?\?"
+}
+
+set_material_zfactor {
+    # Example Command: F1 1,5555
+    # Left and right pad with zeroes so we can hard-code the width
+    LEN = 0x2C; CMD = "F\$1 2,%5d"; CRC1 = 0x0; CRC2 = 0x0;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "\?\?"
+}
+
+# Sensor Commands
 
 get_crystal_tooling {
     # Parameter: Sensor number
@@ -82,8 +113,40 @@ get_shutter {
 #    in $SYNC, "\?A", "\?\?";
 #}
 
+# Run State Commands
+
+get_run_state {
+    LEN = 0x24; CMD = "V?"; CRC1 = 0x5A; CRC2 = 0x74;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "\?A", "%#s", "\?\?"
+}
+
+start_process {
+    LEN = 0x24; CMD = "U0"; CRC1 = 0x9B; CRC2 = 0x52;
+    # Full request:
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    # Full response:
+    in $SYNC, "\?A", "\?\?";
+}
+
+reset_process {
+    LEN = 0x24; CMD = "U1"; CRC1 = 0x5A; CRC2 = 0x71;
+    # Full request:
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    # Full response:
+    in $SYNC, "\?A", "\?\?";
+}
+
 zero_thickness {
-    LEN = "0x25"; CMD = "U32"; CRC1 = 0x94; CRC2 = 0x53;
+    LEN = 0x25; CMD = "U32"; CRC1 = 0x94; CRC2 = 0x53;
+    # Full request:
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    # Full response:
+    in $SYNC, "\?A", "\?\?";
+}
+
+zero_time {
+    LEN = 0x25; CMD = "U33"; CRC1 = 0x55; CRC2 = 0x70;
     # Full request:
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     # Full response:

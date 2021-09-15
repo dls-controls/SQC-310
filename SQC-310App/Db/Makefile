@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #
 DB += SQC-310.template
 DB += SQC-310_sensor.template
+DB += SQC-310_material.template
 
 include $(TOP)/configure/RULES
 #----------------------------------------

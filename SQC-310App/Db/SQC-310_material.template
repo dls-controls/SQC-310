@@ -1,0 +1,38 @@
+# SQC-310 Material $(R)
+
+# Macros:
+# % macro, name, Device name
+# % macro, P, Device Prefix
+# % macro, R, Device Prefix
+# % macro, PORT, Asyn Port name
+
+
+record (stringout, "$(P):$(R):Name")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto set_material_name($(R)) $(PORT)")
+}
+
+record (stringin, "$(P):$(R):Name_RBV")
+{
+    field (DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field (INP,  "@SQC-310.proto get_material_name($(R)) $(PORT)")
+    field (SCAN, "1 second")
+}
+
+record (longout, "$(P):$(R):Density")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto set_material_density($(R)) $(PORT)")
+    field (EGU, "cgcm^-3")
+}
+
+record (longin, "$(P):$(R):Density_RBV")
+{
+    field (DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field (INP,  "@SQC-310.proto get_material_density($(R)) $(PORT)")
+    field (EGU, "cgcm^-3")
+    field (SCAN, "1 second")
+}

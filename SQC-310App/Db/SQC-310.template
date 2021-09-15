@@ -11,28 +11,28 @@
 # This associates the template with an edm screen
 # % gui, $(name), edm, SQC-310.edl, P=$(P)
 
-substitute "R=1"
-include "SQC-310_sensor.template"
-
-substitute "R=2"
-include "SQC-310_sensor.template"
-
-substitute "R=3"
-include "SQC-310_sensor.template"
-
-substitute "R=4"
-include "SQC-310_sensor.template"
+# Disable Polling
+record(bo, "$(P):Disable") {
+    field(DESC, "Disable polling")
+    field(PINI, "YES")
+    field(VAL, "1")
+    field(OMSL, "supervisory")
+    field(ZNAM, "Enabled")
+    field(ONAM, "Disabled")
+}
 
 record(stringin, "$(P):DeviceName") {
-  field(DTYP, "stream")
-  field(INP, "@SQC-310.proto get_device_name $(PORT)")
-  field(PINI, "YES")
-  field(SCAN, "10 second")
+    field(DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field(INP, "@SQC-310.proto get_device_name $(PORT)")
+    field(PINI, "YES")
+    field(SCAN, "10 second")
 }
 
 record (ai, "$(P):Frequency")
 {
     field (DTYP, "stream")
+    field(SDIS, "$(P):Disable")
     field (INP,  "@SQC-310.proto get_frequency1 $(PORT)")
     field (EGU, "Hz")
     field (SCAN, "1 second")
@@ -41,25 +41,9 @@ record (ai, "$(P):Frequency")
 record (ai, "$(P):Shutter_RBV")
 {
     field (DTYP, "stream")
+    field(SDIS, "$(P):Disable")
     field (INP,  "@SQC-310.proto get_shutter $(PORT)")
     field (SCAN, "1 second")
-}
-
-record (ao, "$(P):Density")
-{
-    field (DTYP, "stream")
-    field (OUT,  "@SQC-310.proto set_material_density(1) $(PORT)")
-    field (EGU, "gcm^-3")
-    field(PREC, 2)
-}
-
-record (ai, "$(P):Density_RBV")
-{
-    field (DTYP, "stream")
-    field (INP,  "@SQC-310.proto get_material_density(1) $(PORT)")
-    field (EGU, "gcm^-3")
-    field (SCAN, "1 second")
-    field(PREC, 2)
 }
 
 #record (stringin, "$(P):Film")
@@ -70,10 +54,38 @@ record (ai, "$(P):Density_RBV")
 #    field (FLNK, "$(P):MeanRate")
 #}
 
-record (bo, "$(P):Zero")
+# Run State
+
+record(stringin, "$(P):RunState") {
+    field(DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field(INP, "@SQC-310.proto get_run_state $(PORT)")
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+}
+
+record (bo, "$(P):StartProcess")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto start_process $(PORT)")
+}
+
+record (bo, "$(P):ResetProcess")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto reset_process $(PORT)")
+}
+
+record (bo, "$(P):ZeroThickness")
 {
     field (DTYP, "stream")
     field (OUT,  "@SQC-310.proto zero_thickness $(PORT)")
+}
+
+record (bo, "$(P):ZeroTime")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto zero_time $(PORT)")
 }
 
 record (ai, "$(P):_starttime")
@@ -104,3 +116,46 @@ record (calc, "$(P):MeanRate")
     field (INPB, "$(P):Runtime PP MS")
     field (CALC, "1000*A/B")
 }
+
+# Sensors
+
+substitute "R=1"
+include "SQC-310_sensor.template"
+
+substitute "R=2"
+include "SQC-310_sensor.template"
+
+substitute "R=3"
+include "SQC-310_sensor.template"
+
+substitute "R=4"
+include "SQC-310_sensor.template"
+
+# Materials
+
+substitute "R=1"
+include "SQC-310_material.template"
+
+substitute "R=2"
+include "SQC-310_material.template"
+
+substitute "R=3"
+include "SQC-310_material.template"
+
+substitute "R=4"
+include "SQC-310_material.template"
+
+substitute "R=5"
+include "SQC-310_material.template"
+
+substitute "R=6"
+include "SQC-310_material.template"
+
+substitute "R=7"
+include "SQC-310_material.template"
+
+substitute "R=8"
+include "SQC-310_material.template"
+
+substitute "R=9"
+include "SQC-310_material.template"
