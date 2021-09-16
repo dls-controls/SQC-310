@@ -21,18 +21,59 @@ record (stringin, "$(P):$(R):Name_RBV")
     field (SCAN, "1 second")
 }
 
-record (longout, "$(P):$(R):Density")
+record (longout, "$(P):$(R):RawDensity")
 {
     field (DTYP, "stream")
     field (OUT,  "@SQC-310.proto set_material_density($(R)) $(PORT)")
-    field (EGU, "cgcm^-3")
 }
 
-record (longin, "$(P):$(R):Density_RBV")
+record (longin, "$(P):$(R):RawDensity_RBV")
 {
     field (DTYP, "stream")
     field(SDIS, "$(P):Disable")
     field (INP,  "@SQC-310.proto get_material_density($(R)) $(PORT)")
-    field (EGU, "cgcm^-3")
+    field (EGU, "gcm^-3")
     field (SCAN, "1 second")
+}
+
+record (calcout, "$(P):$(R):Density") {
+    field(OUT, "$(P):RawDensity PP")
+    field(CALC, "A*100")
+    field(PREC, "2")
+    field(EGU, "gcm^-3")
+}
+
+record (calc, "$(P):$(R):Density_RBV") {
+    field(INPA, "$(P):$(R):RawDensity_RBV CP")
+    field(CALC, "A/100")
+    field(PREC, "2")
+    field(EGU, "gcm^-3")
+}
+
+record (longout, "$(P):$(R):RawZFactor")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@SQC-310.proto set_material_zfactor($(R)) $(PORT)")
+}
+
+record (longin, "$(P):$(R):RawZFactor_RBV")
+{
+    field (DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field (INP,  "@SQC-310.proto get_material_zfactor($(R)) $(PORT)")
+    field (SCAN, "1 second")
+}
+
+record (calcout, "$(P):$(R):ZFactor") {
+    field(OUT, "$(P):RawZFactor PP")
+    field(CALC, "A*1000")
+    field(PREC, "3")
+    field(EGU, "%")
+}
+
+record (calc, "$(P):$(R):ZFactor_RBV") {
+    field(INPA, "$(P):$(R):RawZFactor_RBV CP")
+    field(CALC, "A/1000")
+    field(PREC, "3")
+    field(EGU, "%")
 }

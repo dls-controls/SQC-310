@@ -20,12 +20,13 @@ get_device_name {
 get_material_name {
     LEN = 0x27; CMD = "F\$1? 1"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "%s", "\?\?"
+    in "%.1/A(.*)../";
 }
 
 set_material_name {
     # Example Command: F1 1,Berylium
-    LEN = 0x2C; CMD = "F\$1 1,%s"; CRC1 = 0x0; CRC2 = 0x0;
+    # Pad with spaces, left justified, so that the width is fixed. The device strips the whitespace.
+    LEN = 0x3B; CMD = "F\$1 1,%-20s"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }
@@ -37,23 +38,25 @@ get_material_density {
 }
 
 set_material_density {
-    # Example Command: F1 1,5555
-    # Left and right pad with zeroes so we can hard-code the width
-    LEN = 0x2C; CMD = "F\$1 2,%05d"; CRC1 = 0x0; CRC2 = 0x0;
+    # Example Command: F1 2,9999
+    # 9999 -> 99.99, 1001 -> 10.01
+    # Pad with zeroes so we can hard-code the width
+    LEN = 0x2B; CMD = "F\$1 2,%04d"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }
 
 get_material_zfactor {
-    LEN = 0x27; CMD = "F\$1? 2"; CRC1 = 0x0; CRC2 = 0x0;
+    LEN = 0x27; CMD = "F\$1? 3"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "%d", "\?\?"
 }
 
 set_material_zfactor {
-    # Example Command: F1 1,5555
-    # Left and right pad with zeroes so we can hard-code the width
-    LEN = 0x2C; CMD = "F\$1 2,%5d"; CRC1 = 0x0; CRC2 = 0x0;
+    # Example Command: F1 3,9999
+    # 9999 -> 9.999, 1001 -> 1.001
+    # Pad with zeroes so we can hard-code the width
+    LEN = 0x2B; CMD = "F\$1 3,%04d"; CRC1 = 0x0; CRC2 = 0x0;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
     in $SYNC, "\?A", "\?\?"
 }
@@ -118,7 +121,7 @@ get_shutter {
 get_run_state {
     LEN = 0x24; CMD = "V?"; CRC1 = 0x5A; CRC2 = 0x74;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "%#s", "\?\?"
+    in $SYNC, "%.1/A(.*)../"
 }
 
 start_process {

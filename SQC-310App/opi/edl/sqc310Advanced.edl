@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 3858
-y 1106
+x 4129
+y 540
 w 441
 h 371
 font "helvetica-medium-r-18.0"
@@ -193,7 +193,7 @@ major 4
 minor 1
 release 1
 x 10
-y 80
+y 75
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -214,7 +214,7 @@ major 4
 minor 1
 release 1
 x 10
-y 105
+y 100
 w 57
 h 13
 font "arial-bold-r-12.0"
@@ -235,7 +235,7 @@ major 4
 minor 1
 release 1
 x 10
-y 130
+y 125
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -256,7 +256,7 @@ major 4
 minor 1
 release 1
 x 10
-y 155
+y 150
 w 57
 h 13
 font "arial-bold-r-12.0"
@@ -277,7 +277,7 @@ major 4
 minor 1
 release 1
 x 10
-y 180
+y 175
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -298,7 +298,7 @@ major 4
 minor 1
 release 1
 x 10
-y 205
+y 200
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -319,7 +319,7 @@ major 4
 minor 1
 release 1
 x 10
-y 230
+y 225
 w 59
 h 13
 font "arial-bold-r-12.0"
@@ -340,7 +340,7 @@ major 4
 minor 1
 release 1
 x 10
-y 255
+y 250
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -361,7 +361,7 @@ major 4
 minor 1
 release 1
 x 10
-y 280
+y 275
 w 58
 h 13
 font "arial-bold-r-12.0"
@@ -422,7 +422,7 @@ major 10
 minor 0
 release 0
 x 235
-y 75
+y 70
 w 40
 h 20
 controlPv "$(P):1:Density"
@@ -440,7 +440,7 @@ major 4
 minor 6
 release 0
 x 280
-y 75
+y 70
 w 40
 h 20
 controlPv "$(P):1:Density_RBV"
@@ -465,7 +465,7 @@ major 10
 minor 0
 release 0
 x 80
-y 75
+y 70
 w 65
 h 20
 controlPv "$(P):1:Name"
@@ -483,7 +483,7 @@ major 4
 minor 6
 release 0
 x 150
-y 75
+y 70
 w 75
 h 20
 controlPv "$(P):1:Name_RBV"
@@ -508,7 +508,7 @@ major 10
 minor 0
 release 0
 x 330
-y 75
+y 70
 w 45
 h 20
 controlPv "$(P):1:ZFactor"
@@ -526,7 +526,7 @@ major 4
 minor 6
 release 0
 x 380
-y 75
+y 70
 w 45
 h 20
 controlPv "$(P):1:ZFactor_RBV"
@@ -551,7 +551,7 @@ major 10
 minor 0
 release 0
 x 235
-y 100
+y 95
 w 40
 h 20
 controlPv "$(P):2:Density"
@@ -569,7 +569,7 @@ major 4
 minor 6
 release 0
 x 280
-y 100
+y 95
 w 40
 h 20
 controlPv "$(P):2:Density_RBV"
@@ -594,7 +594,7 @@ major 10
 minor 0
 release 0
 x 80
-y 100
+y 95
 w 65
 h 20
 controlPv "$(P):2:Name"
@@ -612,7 +612,7 @@ major 4
 minor 6
 release 0
 x 150
-y 100
+y 95
 w 75
 h 20
 controlPv "$(P):2:Name_RBV"
@@ -637,10 +637,10 @@ major 10
 minor 0
 release 0
 x 330
-y 100
+y 95
 w 45
 h 20
-controlPv "$(P):1:ZFactor"
+controlPv "$(P):2:ZFactor"
 fgColor index 25
 fgAlarm
 bgColor index 3
@@ -655,10 +655,10 @@ major 4
 minor 6
 release 0
 x 380
-y 100
+y 95
 w 45
 h 20
-controlPv "$(P):1:ZFactor_RBV"
+controlPv "$(P):2:ZFactor_RBV"
 format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "center"
@@ -680,7 +680,7 @@ major 10
 minor 0
 release 0
 x 235
-y 125
+y 120
 w 40
 h 20
 controlPv "$(P):3:Density"
@@ -698,7 +698,7 @@ major 4
 minor 6
 release 0
 x 280
-y 125
+y 120
 w 40
 h 20
 controlPv "$(P):3:Density_RBV"
@@ -723,7 +723,7 @@ major 10
 minor 0
 release 0
 x 80
-y 125
+y 120
 w 65
 h 20
 controlPv "$(P):3:Name"
@@ -741,7 +741,7 @@ major 4
 minor 6
 release 0
 x 150
-y 125
+y 120
 w 75
 h 20
 controlPv "$(P):3:Name_RBV"
@@ -766,7 +766,7 @@ major 10
 minor 0
 release 0
 x 330
-y 125
+y 120
 w 45
 h 20
 controlPv "$(P):3:ZFactor"
@@ -784,7 +784,7 @@ major 4
 minor 6
 release 0
 x 380
-y 125
+y 120
 w 45
 h 20
 controlPv "$(P):3:ZFactor_RBV"
@@ -809,7 +809,7 @@ major 10
 minor 0
 release 0
 x 235
-y 150
+y 145
 w 40
 h 20
 controlPv "$(P):4:Density"
@@ -827,7 +827,7 @@ major 4
 minor 6
 release 0
 x 280
-y 150
+y 145
 w 40
 h 20
 controlPv "$(P):4:Density_RBV"
@@ -852,7 +852,7 @@ major 10
 minor 0
 release 0
 x 80
-y 150
+y 145
 w 65
 h 20
 controlPv "$(P):4:Name"
@@ -870,7 +870,7 @@ major 4
 minor 6
 release 0
 x 150
-y 150
+y 145
 w 75
 h 20
 controlPv "$(P):4:Name_RBV"
@@ -895,7 +895,7 @@ major 10
 minor 0
 release 0
 x 330
-y 150
+y 145
 w 45
 h 20
 controlPv "$(P):4:ZFactor"
@@ -913,7 +913,7 @@ major 4
 minor 6
 release 0
 x 380
-y 150
+y 145
 w 45
 h 20
 controlPv "$(P):4:ZFactor_RBV"
@@ -938,7 +938,7 @@ major 10
 minor 0
 release 0
 x 235
-y 175
+y 170
 w 40
 h 20
 controlPv "$(P):5:Density"
@@ -956,7 +956,7 @@ major 4
 minor 6
 release 0
 x 280
-y 175
+y 170
 w 40
 h 20
 controlPv "$(P):5:Density_RBV"
@@ -981,7 +981,7 @@ major 10
 minor 0
 release 0
 x 80
-y 175
+y 170
 w 65
 h 20
 controlPv "$(P):5:Name"
@@ -999,7 +999,7 @@ major 4
 minor 6
 release 0
 x 150
-y 175
+y 170
 w 75
 h 20
 controlPv "$(P):5:Name_RBV"
@@ -1024,7 +1024,7 @@ major 10
 minor 0
 release 0
 x 330
-y 175
+y 170
 w 45
 h 20
 controlPv "$(P):5:ZFactor"
@@ -1042,7 +1042,7 @@ major 4
 minor 6
 release 0
 x 380
-y 175
+y 170
 w 45
 h 20
 controlPv "$(P):5:ZFactor_RBV"
@@ -1067,7 +1067,7 @@ major 10
 minor 0
 release 0
 x 235
-y 200
+y 195
 w 40
 h 20
 controlPv "$(P):6:Density"
@@ -1085,7 +1085,7 @@ major 4
 minor 6
 release 0
 x 280
-y 200
+y 195
 w 40
 h 20
 controlPv "$(P):6:Density_RBV"
@@ -1110,7 +1110,7 @@ major 10
 minor 0
 release 0
 x 80
-y 200
+y 195
 w 65
 h 20
 controlPv "$(P):6:Name"
@@ -1128,7 +1128,7 @@ major 4
 minor 6
 release 0
 x 150
-y 200
+y 195
 w 75
 h 20
 controlPv "$(P):6:Name_RBV"
@@ -1153,7 +1153,7 @@ major 10
 minor 0
 release 0
 x 330
-y 200
+y 195
 w 45
 h 20
 controlPv "$(P):6:ZFactor"
@@ -1171,7 +1171,7 @@ major 4
 minor 6
 release 0
 x 380
-y 200
+y 195
 w 45
 h 20
 controlPv "$(P):6:ZFactor_RBV"
@@ -1196,7 +1196,7 @@ major 10
 minor 0
 release 0
 x 235
-y 225
+y 220
 w 40
 h 20
 controlPv "$(P):7:Density"
@@ -1214,7 +1214,7 @@ major 4
 minor 6
 release 0
 x 280
-y 225
+y 220
 w 40
 h 20
 controlPv "$(P):7:Density_RBV"
@@ -1239,7 +1239,7 @@ major 10
 minor 0
 release 0
 x 80
-y 225
+y 220
 w 65
 h 20
 controlPv "$(P):7:Name"
@@ -1257,7 +1257,7 @@ major 4
 minor 6
 release 0
 x 150
-y 225
+y 220
 w 75
 h 20
 controlPv "$(P):7:Name_RBV"
@@ -1282,7 +1282,7 @@ major 10
 minor 0
 release 0
 x 330
-y 225
+y 220
 w 45
 h 20
 controlPv "$(P):7:ZFactor"
@@ -1300,7 +1300,7 @@ major 4
 minor 6
 release 0
 x 380
-y 225
+y 220
 w 45
 h 20
 controlPv "$(P):7:ZFactor_RBV"
@@ -1325,7 +1325,7 @@ major 10
 minor 0
 release 0
 x 235
-y 250
+y 245
 w 40
 h 20
 controlPv "$(P):8:Density"
@@ -1343,7 +1343,7 @@ major 4
 minor 6
 release 0
 x 280
-y 250
+y 245
 w 40
 h 20
 controlPv "$(P):8:Density_RBV"
@@ -1368,7 +1368,7 @@ major 10
 minor 0
 release 0
 x 80
-y 250
+y 245
 w 65
 h 20
 controlPv "$(P):8:Name"
@@ -1386,7 +1386,7 @@ major 4
 minor 6
 release 0
 x 150
-y 250
+y 245
 w 75
 h 20
 controlPv "$(P):8:Name_RBV"
@@ -1411,7 +1411,7 @@ major 10
 minor 0
 release 0
 x 330
-y 250
+y 245
 w 45
 h 20
 controlPv "$(P):8:ZFactor"
@@ -1429,7 +1429,7 @@ major 4
 minor 6
 release 0
 x 380
-y 250
+y 245
 w 45
 h 20
 controlPv "$(P):8:ZFactor_RBV"
@@ -1454,7 +1454,7 @@ major 10
 minor 0
 release 0
 x 235
-y 275
+y 270
 w 40
 h 20
 controlPv "$(P):9:Density"
@@ -1472,7 +1472,7 @@ major 4
 minor 6
 release 0
 x 280
-y 275
+y 270
 w 40
 h 20
 controlPv "$(P):9:Density_RBV"
@@ -1497,7 +1497,7 @@ major 10
 minor 0
 release 0
 x 80
-y 275
+y 270
 w 65
 h 20
 controlPv "$(P):9:Name"
@@ -1515,7 +1515,7 @@ major 4
 minor 6
 release 0
 x 150
-y 275
+y 270
 w 75
 h 20
 controlPv "$(P):9:Name_RBV"
@@ -1540,7 +1540,7 @@ major 10
 minor 0
 release 0
 x 330
-y 275
+y 270
 w 45
 h 20
 controlPv "$(P):9:ZFactor"
@@ -1558,7 +1558,7 @@ major 4
 minor 6
 release 0
 x 380
-y 275
+y 270
 w 45
 h 20
 controlPv "$(P):9:ZFactor_RBV"
