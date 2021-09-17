@@ -119,9 +119,11 @@ get_shutter {
 # Run State Commands
 
 get_run_state {
+    # Parameter: PV Prefix
     LEN = 0x24; CMD = "V?"; CRC1 = 0x5A; CRC2 = 0x74;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "%.1/A(.*)../"
+    # in $SYNC, "%.1/A(.*)../"
+    in $SYNC, "\?A", "%(\$1:State_RBV)d %(\$1:RunTime_RBV)d %(\$1:ProcessNumber_RBV)d %(\$1:ActiveLayer_RBV)d %(\$1:ControlMode_RBV)1d", "\?\?";
 }
 
 start_process {

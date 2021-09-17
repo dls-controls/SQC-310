@@ -5,8 +5,8 @@ minor 0
 release 1
 x 3673
 y 540
-w 443
-h 292
+w 444
+h 328
 font "helvetica-medium-r-18.0"
 ctlFont "helvetica-medium-r-18.0"
 btnFont "helvetica-medium-r-18.0"
@@ -222,11 +222,11 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 120
-y 270
-w 80
-h 10
-controlPv "$(P):VSTATE_RBV"
+x 230
+y 240
+w 20
+h 20
+controlPv "$(P):Running_RBV"
 lineColor index 14
 onColor index 15
 offColor index 19
@@ -828,12 +828,12 @@ beginObjectProperties
 major 4
 minor 6
 release 0
-x 110
+x 100
 y 240
-w 100
+w 120
 h 20
-controlPv "$(P):RunState"
-format "exponential"
+controlPv "$(P):State_RBV"
+format "string"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 16
@@ -873,8 +873,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 220
-y 240
+x 10
+y 300
 w 100
 h 20
 fgColor index 18
@@ -897,8 +897,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 325
-y 240
+x 120
+y 300
 w 95
 h 20
 fgColor index 21
@@ -921,8 +921,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 220
-y 265
+x 230
+y 300
 w 100
 h 20
 fgColor index 27
@@ -945,8 +945,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 325
-y 265
+x 340
+y 300
 w 95
 h 20
 fgColor index 27
@@ -983,6 +983,137 @@ xPoints {
 yPoints {
   0 230
   1 230
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 350
+y 240
+w 75
+h 20
+controlPv "$(P):RunTime_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 10
+limitsFromDb
+nullColor index 30
+showUnits
+useAlarmBorder
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 350
+y 270
+w 75
+h 20
+controlPv "$(P):ControlMode_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 10
+limitsFromDb
+nullColor index 30
+useAlarmBorder
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 180
+y 270
+w 40
+h 20
+controlPv "$(P):ActiveLayer_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 10
+limitsFromDb
+nullColor index 30
+showUnits
+useAlarmBorder
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 100
+y 270
+w 80
+h 20
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Active Layer"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 260
+y 270
+w 85
+h 20
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Manual/Auto"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 260
+y 240
+w 85
+h 20
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Process Time"
 }
 endObjectProperties
 

@@ -29,13 +29,50 @@ record(stringin, "$(P):DeviceName_RBV") {
 
 # Run State
 
-record(stringin, "$(P):RunState") {
+record(stringin, "$(P):GetRunState") {
     field(DTYP, "stream")
     field(SDIS, "$(P):Disable")
-    field(INP, "@SQC-310.proto get_run_state $(PORT)")
+    field(INP, "@SQC-310.proto get_run_state($(P)) $(PORT)")
     field(PINI, "YES")
     field(SCAN, ".5 second")
 }
+
+# The following records are redirected to by the get_run_state protocol
+
+record(mbbi,"$(P):State_RBV") {
+    field(DTYP, "Soft Channel")
+    field(ZRVL, "0")
+    field(ZRST, "Stopped")
+    field(ONVL, "1")
+    field(ONST, "Crystal Verify")
+    field(TWVL, "2")
+    field(THST, "Initialise Layer")
+    field(THVL, "3")
+    field(THST, "Manual Start Layer")
+}
+
+record(calc, "$(P):Running_RBV") {
+    field(INPA, "$(P):State_RBV CP")
+    field(CALC, "A=0?0:1")
+}
+
+ record(longin, "$(P):RunTime_RBV") {
+     field(EGU, "s")
+}
+
+record(longin, "$(P):ProcessNumber_RBV") {
+}
+
+record(longin, "$(P):ActiveLayer_RBV") {
+}
+
+record(bi, "$(P):ControlMode_RBV") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Manual")
+    field(ONAM, "Automatic")
+}
+
+# Run Controls
 
 record (bo, "$(P):StartProcess")
 {
