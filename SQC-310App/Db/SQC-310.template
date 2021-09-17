@@ -50,15 +50,21 @@ record(mbbi,"$(P):ResponseStatus_RBV") {
     field(ZRST, "")  # No error
     field(ONVL, "1")
     field(ONST, "Invalid command")
+    field(ONSV, "MAJOR")
     field(TWVL, "2")
     field(TWST, "Problem with data in command")
+    field(TWSV, "MAJOR")
     field(THVL, "3")
     field(THST, "Invalid mode for command")
+    field(THSV, "MAJOR")
     field(FRVL, "4")
     field(FRST, "Invalid CRC")
+    field(FRSV, "MAJOR")
     field(FVVL, "5")
     field(FVST, "Response exceeds 221 characters")
+    field(FVSV, "MAJOR")
     field(VAL,  "0")
+    field(PINI, "YES")
 }
 
 # Run State
