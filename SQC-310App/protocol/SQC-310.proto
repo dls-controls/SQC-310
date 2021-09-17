@@ -97,18 +97,6 @@ get_thickness {
     in $SYNC, "\?A", "%f", "\?\?";
 }
 
-get_frequency1 {
-    LEN = 0x24; CMD = "P1"; CRC1 = 0x5A; CRC2 = 0x91;
-    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "% f", "\?\?";
-}
-
-get_shutter {
-    LEN = 0x24; CMD = "U?"; CRC1 = 0x5B; CRC2 = 0x54;
-    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-    in $SYNC, "\?A", "% f", "\?\?";
-}
-
 get_output_readings {
     LEN = 0x24; CMD = "K1"; CRC1 = 0x5D; CRC2 = 0x31;
     out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
@@ -125,13 +113,6 @@ get_response_status {
     # Don't parse A for success or errors will be cleared by successful polls
     in $SYNC, "\?%{X|C|D|E|F|G}%*s", "\?\?";
 }
-
-#get_filmParameters {
-#    LEN = 0x25; CMD = "A1?"; CRC1 = 0x2E; CRC2 = 0x95;
-#    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
-#    #in $SYNC, "\?A", "%#s%", , "%(\$1.VAL)f", "*f", "%(\$2.VAL)f", "%*f", "%*f", "%*d". "%*d", "\?\?";
-#    in $SYNC, "\?A", "\?\?";
-#}
 
 # Run State Commands
 

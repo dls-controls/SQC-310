@@ -146,35 +146,6 @@ record (bo, "$(P):ZeroTime")
     field (OUT,  "@SQC-310.proto zero_time $(PORT)")
 }
 
-record (ai, "$(P):_starttime")
-{
-    field (DTYP, "Soft Timestamp")
-    field (TSEL, "$(P):Zero.TIME")
-}
-
-record (ai, "$(P):_currtime")
-{
-    field (DTYP, "Soft Timestamp")
-    field (TSEL, "$(P):Thickness.TIME")
-}
-
-
-record (calc, "$(P):Runtime")
-{
-    field (EGU, "s")
-    field (INPA, "$(P):_starttime PP MS")
-    field (INPB, "$(P):_currtime PP MS")
-    field (CALC, "B-A")
-}
-
-record (calc, "$(P):MeanRate")
-{
-    field (EGU, "Ang/s")
-    field (INPA, "$(P):Thickness")
-    field (INPB, "$(P):Runtime PP MS")
-    field (CALC, "1000*A/B")
-}
-
 # Sensors
 
 substitute "R=1"
