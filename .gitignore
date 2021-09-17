@@ -21,5 +21,6 @@ O.*/
 
 .idea/
 cmake-build*/
+.vscode/
 
 *.pyc
