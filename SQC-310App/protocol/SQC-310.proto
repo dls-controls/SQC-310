@@ -109,6 +109,18 @@ get_shutter {
     in $SYNC, "\?A", "% f", "\?\?";
 }
 
+get_output_readings {
+    LEN = 0x24; CMD = "K1"; CRC1 = 0x5D; CRC2 = 0x31;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "%+/A(.*)../"
+}
+
+get_sensor_readings {
+    LEN = 0x24; CMD = "K2"; CRC1 = 0x9D; CRC2 = 0x31;
+    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;
+    in $SYNC, "%+/A(.*)../"
+}
+
 #get_filmParameters {
 #    LEN = 0x25; CMD = "A1?"; CRC1 = 0x2E; CRC2 = 0x95;
 #    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;

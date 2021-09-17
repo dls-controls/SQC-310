@@ -37,6 +37,20 @@ record(stringin, "$(P):GetRunState") {
     field(SCAN, ".5 second")
 }
 
+record(stringin, "$(P):GetOutputReadings") {
+    field(DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field(INP, "@SQC-310.proto get_output_readings $(PORT)")
+    field(PINI, "YES")
+}
+
+record(stringin, "$(P):GetSensorReadings") {
+    field(DTYP, "stream")
+    field(SDIS, "$(P):Disable")
+    field(INP, "@SQC-310.proto get_sensor_readings $(PORT)")
+    field(PINI, "YES")
+}
+
 # The following records are redirected to by the get_run_state protocol
 
 record(mbbi,"$(P):State_RBV") {
