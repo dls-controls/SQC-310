@@ -15,7 +15,7 @@
 record(bo, "$(P):Disable") {
     field(DESC, "Disable polling")
     field(PINI, "YES")
-    field(VAL, "1")
+    field(VAL,  "1")
     field(OMSL, "supervisory")
     field(ZNAM, "Enabled")
     field(ONAM, "Disabled")
@@ -23,7 +23,7 @@ record(bo, "$(P):Disable") {
 
 record(stringin, "$(P):DeviceName_RBV") {
     field(DTYP, "stream")
-    field(INP, "@SQC-310.proto get_device_name $(PORT)")
+    field(INP,  "@SQC-310.proto get_device_name $(PORT)")
     field(PINI, "YES")
 }
 
@@ -32,7 +32,7 @@ record(stringin, "$(P):DeviceName_RBV") {
 record (longin, "$(P):GetResponseStatus")
 {
     field(DTYP, "stream")
-    field(INP, "@SQC-310.proto get_response_status $(PORT)")
+    field(INP,  "@SQC-310.proto get_response_status $(PORT)")
     field(SCAN, "I/O Intr")
     field(FLNK, "$(P):ResponseStatus_CALC")
 }
@@ -40,7 +40,7 @@ record (longin, "$(P):GetResponseStatus")
 record(calcout, "$(P):ResponseStatus_CALC" ) {
     field(INPA, "$(P):GetResponseStatus")
     field(CALC, "A")
-    field(OUT, "$(P):ResponseStatus_RBV PP")
+    field(OUT,  "$(P):ResponseStatus_RBV PP")
 }
 
 # This mbbi could use the get_response stream protocol directly, but then we can't caput 0 to reset the error
@@ -58,7 +58,7 @@ record(mbbi,"$(P):ResponseStatus_RBV") {
     field(FRST, "Invalid CRC")
     field(FVVL, "5")
     field(FVST, "Response exceeds 221 characters")
-    field(VAL, "0")
+    field(VAL,  "0")
 }
 
 # Run State
@@ -66,7 +66,7 @@ record(mbbi,"$(P):ResponseStatus_RBV") {
 record(stringin, "$(P):GetRunState") {
     field(DTYP, "stream")
     field(SDIS, "$(P):Disable")
-    field(INP, "@SQC-310.proto get_run_state($(P)) $(PORT)")
+    field(INP,  "@SQC-310.proto get_run_state($(P)) $(PORT)")
     field(PINI, "YES")
     field(SCAN, ".5 second")
 }
@@ -74,14 +74,14 @@ record(stringin, "$(P):GetRunState") {
 record(stringin, "$(P):GetOutputReadings") {
     field(DTYP, "stream")
     field(SDIS, "$(P):Disable")
-    field(INP, "@SQC-310.proto get_output_readings $(PORT)")
+    field(INP,  "@SQC-310.proto get_output_readings $(PORT)")
     field(PINI, "YES")
 }
 
 record(stringin, "$(P):GetSensorReadings") {
     field(DTYP, "stream")
     field(SDIS, "$(P):Disable")
-    field(INP, "@SQC-310.proto get_sensor_readings $(PORT)")
+    field(INP,  "@SQC-310.proto get_sensor_readings $(PORT)")
     field(PINI, "YES")
 }
 
@@ -105,7 +105,7 @@ record(calc, "$(P):Running_RBV") {
 }
 
  record(longin, "$(P):RunTime_RBV") {
-     field(EGU, "s")
+    field(EGU,  "s")
 }
 
 record(longin, "$(P):ProcessNumber_RBV") {
@@ -122,28 +122,28 @@ record(bi, "$(P):ControlMode_RBV") {
 
 # Run Controls
 
-record (bo, "$(P):StartProcess")
+record(bo, "$(P):StartProcess")
 {
-    field (DTYP, "stream")
-    field (OUT,  "@SQC-310.proto start_process $(PORT)")
+    field(DTYP, "stream")
+    field(OUT,  "@SQC-310.proto start_process $(PORT)")
 }
 
-record (bo, "$(P):ResetProcess")
+record(bo, "$(P):ResetProcess")
 {
-    field (DTYP, "stream")
-    field (OUT,  "@SQC-310.proto reset_process $(PORT)")
+    field(DTYP, "stream")
+    field(OUT,  "@SQC-310.proto reset_process $(PORT)")
 }
 
-record (bo, "$(P):ZeroThickness")
+record(bo, "$(P):ZeroThickness")
 {
-    field (DTYP, "stream")
-    field (OUT,  "@SQC-310.proto zero_thickness $(PORT)")
+    field(DTYP, "stream")
+    field(OUT,  "@SQC-310.proto zero_thickness $(PORT)")
 }
 
-record (bo, "$(P):ZeroTime")
+record(bo, "$(P):ZeroTime")
 {
-    field (DTYP, "stream")
-    field (OUT,  "@SQC-310.proto zero_time $(PORT)")
+    field(DTYP, "stream")
+    field(OUT,  "@SQC-310.proto zero_time $(PORT)")
 }
 
 # Sensors
