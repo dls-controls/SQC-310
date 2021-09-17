@@ -21,38 +21,11 @@ record(bo, "$(P):Disable") {
     field(ONAM, "Disabled")
 }
 
-record(stringin, "$(P):DeviceName") {
+record(stringin, "$(P):DeviceName_RBV") {
     field(DTYP, "stream")
-    field(SDIS, "$(P):Disable")
     field(INP, "@SQC-310.proto get_device_name $(PORT)")
     field(PINI, "YES")
-    field(SCAN, "10 second")
 }
-
-record (ai, "$(P):Frequency")
-{
-    field (DTYP, "stream")
-    field(SDIS, "$(P):Disable")
-    field (INP,  "@SQC-310.proto get_frequency1 $(PORT)")
-    field (EGU, "Hz")
-    field (SCAN, "1 second")
-}
-
-record (ai, "$(P):Shutter_RBV")
-{
-    field (DTYP, "stream")
-    field(SDIS, "$(P):Disable")
-    field (INP,  "@SQC-310.proto get_shutter $(PORT)")
-    field (SCAN, "1 second")
-}
-
-#record (stringin, "$(P):Film")
-#{
-#    field (DTYP, "stream")
-    #field (INP, "@SQC-310 get_filmParameters($(P):Density) $(PORT)")
-#    field (SCAN, "Passive")
-#    field (FLNK, "$(P):MeanRate")
-#}
 
 # Run State
 
@@ -61,7 +34,7 @@ record(stringin, "$(P):RunState") {
     field(SDIS, "$(P):Disable")
     field(INP, "@SQC-310.proto get_run_state $(PORT)")
     field(PINI, "YES")
-    field(SCAN, "1 second")
+    field(SCAN, ".5 second")
 }
 
 record (bo, "$(P):StartProcess")

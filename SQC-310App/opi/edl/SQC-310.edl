@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 3870
-y 531
+x 3673
+y 540
 w 443
 h 292
 font "helvetica-medium-r-18.0"
@@ -201,7 +201,7 @@ x 10
 y 45
 w 100
 h 20
-controlPv "$(P):DeviceName"
+controlPv "$(P):DeviceName_RBV"
 format "exponential"
 font "helvetica-medium-r-10.0"
 fontAlign "center"
