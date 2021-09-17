@@ -121,6 +121,11 @@ get_sensor_readings {
     in $SYNC, "%+/A(.*)../"
 }
 
+get_response_status {
+    # Don't parse A for success or errors will be cleared by successful polls
+    in $SYNC, "\?%{X|C|D|E|F|G}%*s", "\?\?";
+}
+
 #get_filmParameters {
 #    LEN = 0x25; CMD = "A1?"; CRC1 = 0x2E; CRC2 = 0x95;
 #    out $SYNC, $LEN, $CMD, $CRC1, $CRC2;

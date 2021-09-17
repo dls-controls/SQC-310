@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 4129
+x 4131
 y 540
-w 441
-h 371
+w 437
+h 337
 font "helvetica-medium-r-18.0"
 ctlFont "helvetica-medium-r-18.0"
 btnFont "helvetica-medium-r-18.0"
@@ -51,7 +51,7 @@ major 4
 minor 1
 release 1
 x 65
-y 355
+y 320
 w 2
 h 0
 font "helvetica-bold-r-14.0"
@@ -61,56 +61,17 @@ useDisplayBg
 autoSize
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 10
-y 315
-w 76
-h 16
-font "arial-bold-r-14.0"
-fgColor index 10
-bgColor index 3
-useDisplayBg
-value {
-  "Command"
-}
-autoSize
-endObjectProperties
-
-# (Textentry)
-object TextentryClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 95
-y 310
-w 335
-h 25
-controlPv "$(P):COMMAND"
-displayMode "decimal"
-precision 6
-fgColor index 25
-bgColor index 3
-fill
-font "helvetica-medium-r-10.0"
-endObjectProperties
-
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
 minor 6
 release 0
-x 95
-y 345
-w 335
+x 55
+y 310
+w 330
 h 20
-controlPv "$(P):RESPONSE"
+controlPv "$(P):ResponseStatus_RBV"
 font "helvetica-medium-r-10.0"
 fontAlign "center"
 fgColor index 16
@@ -153,17 +114,16 @@ major 4
 minor 1
 release 1
 x 10
-y 345
-w 72
-h 16
+y 310
+w 45
+h 20
 font "arial-bold-r-14.0"
 fgColor index 10
 bgColor index 3
 useDisplayBg
 value {
-  "Response"
+  "Error"
 }
-autoSize
 endObjectProperties
 
 # (Static Text)
@@ -1574,5 +1534,29 @@ useAlarmBorder
 newPos
 objType "monitors"
 noExecuteClipMask
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 395
+y 310
+w 35
+h 20
+fgColor index 22
+onColor index 3
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P):ResponseStatus_RBV"
+pressValue "0"
+onLabel "Clear"
+offLabel "Clear"
+3d
+useEnumNumeric
+font "helvetica-bold-r-10.0"
 endObjectProperties
 

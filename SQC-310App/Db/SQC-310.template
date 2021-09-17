@@ -27,6 +27,40 @@ record(stringin, "$(P):DeviceName_RBV") {
     field(PINI, "YES")
 }
 
+# Response Status
+
+record (longin, "$(P):GetResponseStatus")
+{
+    field(DTYP, "stream")
+    field(INP, "@SQC-310.proto get_response_status $(PORT)")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P):ResponseStatus_CALC")
+}
+
+record(calcout, "$(P):ResponseStatus_CALC" ) {
+    field(INPA, "$(P):GetResponseStatus")
+    field(CALC, "A")
+    field(OUT, "$(P):ResponseStatus_RBV PP")
+}
+
+# This mbbi could use the get_response stream protocol directly, but then we can't caput 0 to reset the error
+record(mbbi,"$(P):ResponseStatus_RBV") {
+    field(DTYP, "Soft Channel")
+    field(ZRVL, "0")
+    field(ZRST, "")  # No error
+    field(ONVL, "1")
+    field(ONST, "Invalid command")
+    field(TWVL, "2")
+    field(TWST, "Problem with data in command")
+    field(THVL, "3")
+    field(THST, "Invalid mode for command")
+    field(FRVL, "4")
+    field(FRST, "Invalid CRC")
+    field(FVVL, "5")
+    field(FVST, "Response exceeds 221 characters")
+    field(VAL, "0")
+}
+
 # Run State
 
 record(stringin, "$(P):GetRunState") {
